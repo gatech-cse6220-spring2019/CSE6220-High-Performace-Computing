@@ -1,0 +1,11 @@
+#PBS -N PA2
+#PBS -l nodes=2:ppn=8
+#PBS -l walltime=30:00
+#PBS -q coc-ice-multi
+#PBS -o $PBS_JOBID.out
+#PBS -e $PBS_JOBID.err
+
+cd $PBS_O_WORKDIR
+module load gcc mvapich2/2.2
+make
+mpirun -np ${p} ./nqueen ${n} ${k}
